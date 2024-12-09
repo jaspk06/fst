@@ -469,10 +469,8 @@ impl<D: AsRef<[u8]>> Fst<D> {
                 let t = node.transition(trans_index);
                 node = self.node(t.addr);
                 out = out.cat(t.out);
-                if node.is_final() {
-                    last_match =
-                        Some((out.cat(node.final_output()).value(), i + 1));
-                }
+                last_match =
+                    Some((out.cat(node.final_output()).value(), i + 1));
             } else {
                 return last_match;
             }
